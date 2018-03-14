@@ -13,7 +13,7 @@ class MovingObject extends React.Component{
     }
     componentWillReceiveProps(nextprops){
         //this function checks if the updated props equal the current state
-        // console.log("next props: ", nextprops)
+        console.log("next props of moving box: ", nextprops)
         if(nextprops !== this.state){
             this.setState({
                 position:nextprops.position,
@@ -23,8 +23,8 @@ class MovingObject extends React.Component{
                 console.log("MovingBox should update")
                 var movingItems = document.querySelectorAll('.Reactive')
                 console.log("moving box moving items query selector result: ", movingItems)
-                let newinfo = {primaryProperty: nextprops.primaryProperty, secondaryProperty: nextprops.secondaryProperty}
-                console.log("new info:", newinfo)
+                let newinfo = {primaryProperty: nextprops.property, secondaryProperty: nextprops.secondaryProperty}
+                console.log("new movingbox info:", newinfo)
                 movingItems.forEach((movingItem, index)=>{
                     movingItems[index].setAttribute('reactiveinfo', newinfo)
                 })

@@ -24,6 +24,17 @@ const move = (movingItem, property, secondaryProperty) => {
     // Update item's position
     movingItem.setAttribute('position', currentPosition);
   }
+  if(property === "rotation"){
+      var currentRotation = movingItem.components.rotation.data
+      if (secondaryProperty === "x") {
+        currentRotation.x += 1
+      } else if (secondaryProperty === "y") {
+        currentRotation.y += 1
+      } else if (secondaryProperty === "z") {
+        currentRotation.z += 1
+      }
+      movingItem.setAttribute('rotation', currentRotation)
+  }
 }
 
 AFRAME.registerComponent('step', {

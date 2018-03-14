@@ -27,7 +27,15 @@ class UI extends React.Component{
     componentDidUpdate(){
         console.log("UI props change: ", this.props)
     }
+    componentWillReceiveProps(nextprops){
+        if(nextprops.numObjects !== this.state.numObjects){
+            this.setState({
+                numObjects: nextprops.numObjects
+            })
+        }
+    }
     render(){
+        console.log("UI re-rendered state: ", this.state)
         let secondaryPropDiv = null
         if(this.state.property === "position" || this.state.property === "rotation"){
             secondaryPropDiv =  <div style={columnHalf}>

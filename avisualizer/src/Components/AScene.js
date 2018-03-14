@@ -10,7 +10,7 @@ class AScene extends React.Component{
       console.log("new objects prop in ascene: ", this.props.objects, "state: ", this.state.movingObjects)
     }
     componentWillReceiveProps(nextprops){
-        console.log("Ascene updates with props nextprops:", nextprops, " not yet re-rendered")
+        console.log("Ascene updated with nextprops:", nextprops, " not yet re-rendered")
         if(nextprops !== this.state){
             console.log("changing Ascene state to reflect updated props")
             this.setState({

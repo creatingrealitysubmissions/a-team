@@ -46,7 +46,7 @@ class App extends Component {
           property: evt.target.value,
           objects: objectsCopy
       },()=>{
-        console.log(this.state)
+        console.log("updated primaryproperty in app: ", this.state)
       })
   }
   changeSecondaryProperty(evt){
