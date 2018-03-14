@@ -35,7 +35,7 @@ class UI extends React.Component{
         }
     }
     render(){
-        console.log("UI re-rendered state: ", this.state)
+        // console.log("UI re-rendered state: ", this.state)
         let secondaryPropDiv = null
         if(this.state.property === "position" || this.state.property === "rotation"){
             secondaryPropDiv =  <div style={columnHalf}>
@@ -64,8 +64,8 @@ class UI extends React.Component{
                         <h3>Reactive Property</h3>
                         <div style={columnHalf}>
                             <select onChange={this.props.onPropertyChange.bind(this)}>
-                                <option value="position">Position</option>
                                 <option value="rotation">Rotation</option>
+                                <option value="position">Position</option>
                                 <option value="scale">Scale</option>
                             </select>
                         </div>

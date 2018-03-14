@@ -17,14 +17,16 @@ const divStyle = {
 
 class App extends Component {
   state={
-    objects: [{objectType: "box", property: "position", secondaryProperty: "x"}],
+    objects: [{objectType: "box", property: "rotation", secondaryProperty: "x"}],
     objectType: "box",
-    property: "position",
+    property: "rotation",
     secondaryProperty: "x"
   }
   componentDidMount(){
-    console.log("starting app state: ", this.state)
+    // console.log("starting app state: ", this.state)
+
   }
+ 
   updateUIState(){
     console.log("ui was changed")
   }
@@ -62,7 +64,7 @@ class App extends Component {
     })
   }
   render() {
-    console.log("app re-rendered")
+    // console.log("app re-rendered")
     return (
       <div className="App">
         <div style={sceneStyle}>

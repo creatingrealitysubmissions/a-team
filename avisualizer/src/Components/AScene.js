@@ -4,8 +4,14 @@ import MovingBox from './MovingBox.js'
 
 class AScene extends React.Component{
     state={
-        movingObjects: this.props.objects
+        movingObjects: this.props.objects,
+        volume: 0
     }
+    componentDidMount(){
+        // this.startStream()
+        console.log("Should ask for navigator info")
+    }
+   
     componentDidUpdate(){
       console.log("new objects prop in ascene: ", this.props.objects, "state: ", this.state.movingObjects)
     }
@@ -17,9 +23,6 @@ class AScene extends React.Component{
                 movingObjects: nextprops.objects
             })
         }
-    }
-    componentDidMount(){
-        console.log("starting objects in ascene: ", this.state.movingObjects)
     }
     render(){
         console.log("Ascene re-rendered. state: ", this.state)
