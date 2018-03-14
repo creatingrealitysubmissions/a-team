@@ -11,16 +11,59 @@ const sceneStyle ={
 
 class App extends Component {
   state={
-    objects: []
+    objects: [{objectType: "box", property: "position", secondaryProperty: "x"}],
+    objectType: "box",
+    property: "position",
+    secondaryProperty: "x"
+  }
+  componentDidMount(){
+    console.log("starting app state: ", this.state)
+  }
+  updateUIState(){
+    console.log("ui was changed")
+  }
+  changeNumObjects(){
+    console.log("tried to change number of objects")
+    this.setState({
+        objects: [...this.state.objects, {objectType: this.state.objectType, property: this.state.property, secondaryProperty: this.state.secondaryProperty}]
+    },()=>{
+      console.log("new state num change: ", this.state)
+    })
+  }
+  changeProperty(evt){
+      // console.log(evt.target.value)
+      var objectsCopy = this.state.objects
+      objectsCopy.forEach(object => {
+        object.property = evt.target.value
+      });
+      this.setState({
+          property: evt.target.value,
+          objects: objectsCopy
+      },()=>{
+        console.log(this.state)
+      })
+  }
+  changeSecondaryProperty(evt){
+    var objectsCopy = this.state.objects
+      objectsCopy.forEach(object => {
+        object.secondaryProperty = evt.target.value
+      });
+    this.setState({
+        secondaryProperty: evt.target.value,
+        objects: objectsCopy
+    },()=>{
+      console.log("new secondary props in app: ", this.state)
+    })
   }
   render() {
     return (
       <div className="App">
         <div style={sceneStyle}>
-          <AScene />
+          <AScene objects={this.state.objects}/>
         </div>
         <div>
-          <UI/>
+          {/* when I change something in the UI I want to call a "prop" function in the UI component that is stored in UI's parent component */}
+          <UI property={this.state.property} secondaryProperty={this.state.secondaryProperty} numObjects={this.state.objects.length} onPropertyChange={this.changeProperty.bind(this)} onSecondaryPropertyChange={this.changeSecondaryProperty.bind(this)} onNumberChange={this.changeNumObjects.bind(this)}/>
         </div>
       </div>
     );

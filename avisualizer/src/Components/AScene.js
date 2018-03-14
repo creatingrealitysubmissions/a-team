@@ -1,14 +1,31 @@
 import React from "react"
 import 'aframe'
-import ASphere from "./ASphere.js"
-import AText from "./AText.js"
 import MovingBox from './MovingBox.js'
 
 class AScene extends React.Component{
+    state={
+        movingObjects: this.props.objects
+    }
+    componentDidUpdate(){
+      console.log("new objects prop in ascene: ", this.props.objects, "state: ", this.state.movingObjects)
+    }
+    componentDidMount(){
+        console.log("starting objects in ascene: ", this.state.movingObjects)
+    }
     render(){
         return(
             <a-scene embedded>
-                <MovingBox/>
+            {this.state.movingObjects.map((object,index)=>{
+                return(
+                    <MovingBox 
+                        key={`movingObject-${index}`} 
+                        position={`0 ${1.5 * index} -5`} 
+                        objectType={this.state.movingObjects[index].objectType}
+                        property={this.state.movingObjects[index].property} 
+                        secondaryProperty={this.state.movingObjects[index].secondaryProperty}
+                    />
+                )
+            })}
                 <a-circle src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Long_Shadows_on_the_Lunar_Surface_-_GPN-2000-001485.jpg" position="0 -3 0" rotation="-90 0 0" radius="20"></a-circle>
                 <a-sky src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Earth_lights_vs_population_density.png">
                     <a-animation

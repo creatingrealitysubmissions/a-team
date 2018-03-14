@@ -17,33 +17,18 @@ const columnHalf = {
 
 class UI extends React.Component{
     state={
-        numObjects: 1,
-        objectType: "cube",
-        property: "position",
-        secondaryProperty: "x"
+        numObjects: this.props.numObjects,
+        property: this.props.property,
+        secondaryProperty: this.props.secondaryProperty
     }
-    changeNumObjects(evt){
-        // console.log(evt.target.value)
-        this.setState({
-            numObjects: evt.target.value
-        })
-    }
-    changeProperty(evt){
-        console.log(evt.target.value)
-        this.setState({
-            property: evt.target.value
-        })
-    }
-    changeSecondaryProperty(evt){
-        this.setState({
-            secondaryProperty: evt.target.value
-        })
+    componentDidUpdate(){
+        console.log("UI props change: ", this.props)
     }
     render(){
         let secondaryPropDiv = null
         if(this.state.property === "position" || this.state.property === "rotation"){
             secondaryPropDiv =  <div style={columnHalf}>
-                                    <select onChange={this.changeSecondaryProperty.bind(this)}>
+                                    <select onChange={this.props.onSecondaryPropertyChange.bind(this)}>
                                         <option value="x">x</option>
                                         <option value="y">y</option>
                                         <option value="z">z</option>
@@ -56,7 +41,7 @@ class UI extends React.Component{
                 <div>
                     <div style={columnStyle}>
                         <h3>Number of Objects</h3>
-                        <input onChange={this.changeNumObjects.bind(this)} id="num-objects" type="number" step="1" value={this.state.numObjects}/>
+                        <input onChange={this.props.onNumberChange.bind(this)} id="num-objects" type="number" step="1" value={this.state.numObjects}/>
                     </div>
                     <div style={columnStyle}>
                         <h3>Object Type</h3>
@@ -67,7 +52,7 @@ class UI extends React.Component{
                     <div style={columnStyle}>
                         <h3>Reactive Property</h3>
                         <div style={columnHalf}>
-                            <select onChange={this.changeProperty.bind(this)}>
+                            <select onChange={this.props.onPropertyChange.bind(this)}>
                                 <option value="position">Position</option>
                                 <option value="rotation">Rotation</option>
                                 <option value="scale">Scale</option>
