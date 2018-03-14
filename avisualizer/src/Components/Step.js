@@ -6,7 +6,7 @@ const move = (movingItem) => {
     //get item's position
 
     var currentPosition = movingItem.components.position.data
-    console.log(currentPosition)
+    // console.log(currentPosition)
 
     currentPosition.x += 0.01
     currentPosition.y = Math.sin(Date.now())
