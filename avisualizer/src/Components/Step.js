@@ -33,9 +33,6 @@ AFRAME.registerComponent('step', {
     var movingItems = document.querySelectorAll('.Reactive')
     if(movingItems){
         for(let i = 0; i < movingItems.length; i++){
-            if(movingItems[i].components.reactiveinfo.data.secondaryProperty != "x"){
-                console.log("we changed the step property")
-            }
             move(movingItems[i], movingItems[i].components.reactiveinfo.data.primaryProperty, movingItems[i].components.reactiveinfo.data.secondaryProperty)
         }
     }

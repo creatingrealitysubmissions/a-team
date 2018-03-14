@@ -9,10 +9,20 @@ class AScene extends React.Component{
     componentDidUpdate(){
       console.log("new objects prop in ascene: ", this.props.objects, "state: ", this.state.movingObjects)
     }
+    componentWillReceiveProps(nextprops){
+        console.log("Ascene updates with props nextprops:", nextprops, " not yet re-rendered")
+        if(nextprops !== this.state){
+            console.log("changing Ascene state to reflect updated props")
+            this.setState({
+                movingObjects: nextprops.objects
+            })
+        }
+    }
     componentDidMount(){
         console.log("starting objects in ascene: ", this.state.movingObjects)
     }
     render(){
+        console.log("Ascene re-rendered. state: ", this.state)
         return(
             <a-scene embedded>
             {this.state.movingObjects.map((object,index)=>{

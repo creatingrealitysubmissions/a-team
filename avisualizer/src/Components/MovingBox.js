@@ -13,14 +13,14 @@ class MovingObject extends React.Component{
     }
     componentWillReceiveProps(nextprops){
         //this function checks if the updated props equal the current state
-        console.log("next props: ", nextprops)
-        if(nextprops != this.state){
+        // console.log("next props: ", nextprops)
+        if(nextprops !== this.state){
             this.setState({
                 position:nextprops.position,
                 primaryProperty:  nextprops.property,
                 secondaryProperty: nextprops.secondaryProperty
             },()=>{
-                console.log("things should update")
+                console.log("MovingBox should update")
                 var movingItems = document.querySelectorAll('.Reactive')
                 console.log("moving box moving items query selector result: ", movingItems)
                 let newinfo = {primaryProperty: nextprops.primaryProperty, secondaryProperty: nextprops.secondaryProperty}
@@ -34,7 +34,7 @@ class MovingObject extends React.Component{
     }
     
     render(){
-        console.log("moving object re-rendered", this.state)
+        console.log("Moving Object re-rendered", this.state)
         return(
             <a-box class="Reactive" step reactiveinfo={{primaryProperty: this.state.primaryProperty, secondaryProperty: this.state.secondaryProperty}} position={this.state.position} color="red" ></a-box>
         )

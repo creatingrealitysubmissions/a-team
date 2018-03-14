@@ -3,7 +3,10 @@ import React from "react"
 const uiStyle ={
     backgroundColor: "blue",
     minHeight: (window.innerHeight * 0.25) + "px",
-    color: "white"
+    color: "white",
+    padding: "10px 0",
+    margin: "0",
+    border: "1px solid transparent"
 }
 
 const columnStyle ={
@@ -58,7 +61,7 @@ class UI extends React.Component{
                                 <option value="scale">Scale</option>
                             </select>
                         </div>
-                       {secondaryPropDiv}
+                    {secondaryPropDiv}
                     </div>
                 </div>
             </div>
