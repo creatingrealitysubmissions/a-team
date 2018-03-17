@@ -58,42 +58,59 @@ const audioSetup = ()=>{
 }
 
 const move = (movingItem, property, secondaryProperty) => {
-    console.log("volume in move: ",volume)
+    // console.log("volume in move: ",volume)
   // If changing position
   if (property === "position") {
-      console.log("step is position")
+      // console.log("step is position")
     // Get item's position
     var currentPosition = movingItem.components.position.data
     // console.log(currentPosition)
     // If changing x
     if (secondaryProperty === "x") {
-      currentPosition.x += 0.01 * (volume || 1)
+      currentPosition.x = 0.01 * (volume || 1)
     //   currentPosition.y = Math.sin(Date.now())
       // If changing y
     } else if (secondaryProperty === "y") {
-      currentPosition.y += 0.01 * (volume || 1)
+      currentPosition.y = 0.01 * (volume || 1)
     //   currentPosition.x += Math.sin(Date.now())
       // If changing z
     } else if (secondaryProperty === "z") {
-      currentPosition.z += 0.01 * (volume || 1)
+      currentPosition.z = 0.01 * (volume || 1)
     //   currentPosition.x = Math.sin(Date.now())
     }
     // Update item's position
-    console.log("post current position: ", currentPosition)
+    // console.log("post current position: ", currentPosition)
     movingItem.setAttribute('position', currentPosition);
   }
   if(property === "rotation"){
-      console.log("rotation prop in step")
+      // console.log("rotation prop in step")
       var currentRotation = movingItem.components.rotation.data
       if (secondaryProperty === "x") {
-        currentRotation.x += 1 * (volume || 1)
+        currentRotation.x = 1 * (volume || 1)
       } else if (secondaryProperty === "y") {
-        currentRotation.y += 1 * (volume || 1)
+        currentRotation.y = 1 * (volume || 1)
       } else if (secondaryProperty === "z") {
-        currentRotation.z += 1 * (volume || 1)
+        currentRotation.z = 1 * (volume || 1)
       }
-      console.log("post current rotation: ", currentRotation)
+      // console.log("post current rotation: ", currentRotation)
       movingItem.setAttribute('rotation', currentRotation)
+  }
+  if(property === "scale"){
+    var currentScale = movingItem.components.scale.data
+    if (secondaryProperty === "x") {
+      currentScale.x = 1 * (volume || 1)
+    } else if (secondaryProperty === "y") {
+      currentScale.y = 1 * (volume || 1)
+    } else if (secondaryProperty === "z") {
+      currentScale.z = 1 * (volume || 1)
+    }
+    movingItem.setAttribute("scale", currentScale)
+  }
+  if(property === "color"){
+    var color = Math.floor((volume || 1) * 16777216)
+    var newColor = `#${color.toString(16).slice(0,6)}`
+    // console.log("newColor: ", newColor)
+    movingItem.setAttribute("color", newColor)
   }
 }
 
@@ -103,9 +120,9 @@ AFRAME.registerComponent('step', {
   tick: function (t, dt) {
     var movingItems = document.querySelectorAll('.Reactive')
     if(movingItems){
-        console.log("items should be moving")
+        // console.log("items should be moving")
         for(let i = 0; i < movingItems.length; i++){
-            console.log("move property in step:", movingItems[i].components.reactiveinfo.data.primaryProperty)
+            // console.log("move property in step:", movingItems[i].components.reactiveinfo.data.primaryProperty)
             move(movingItems[i], movingItems[i].components.reactiveinfo.data.primaryProperty, movingItems[i].components.reactiveinfo.data.secondaryProperty)
         }
     }

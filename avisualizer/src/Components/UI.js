@@ -67,6 +67,7 @@ class UI extends React.Component{
                                 <option value="rotation">Rotation</option>
                                 <option value="position">Position</option>
                                 <option value="scale">Scale</option>
+                                <option value="color">Color</option>
                             </select>
                         </div>
                     {secondaryPropDiv}
