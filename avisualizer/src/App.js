@@ -16,6 +16,7 @@ const divStyle = {
 
 
 class App extends Component {
+  // I should use redux
   state={
     objects: [{objectType: "box", property: "rotation", secondaryProperty: "x"}],
     objectType: "box",
